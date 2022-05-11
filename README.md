@@ -52,3 +52,26 @@ The dataset retrieved from 'NYC OpenData'. This has information about number of 
 - People of the 'Black' race are more likely to be detained in both genders.
 - The age group '25-44' is involved in criminal activity in both male and female genders.
 - 'Black' race individuals commit more crimes than those of other races at every age.
+
+### Feature Engineering and Modeling
+- Main objective is to predict the race of the Perpetrator. but the target varibale is highly imbalanced.
+- Categorical features considered for my analysis are 'PD_DESC', 'OFNS_DESC', 'LAW_CODE', 'LAW_CAT_CD', 'ARREST_BORO', 'JURISDICTION_CODE', 'PERP_SEX' and Numerical features considered are PD_CD', 'KY_CD', 'ARREST_PRECINCT', 'AGE_GRP_NUM'(considered AGE_GROUP as ordinal feature and conveted to numeric)
+- The dataset has over 155k rows so i have considered 20% for test data.
+#### Logistic Regression Model
+- Hyperparameters used for modeling: used C values as [0.1,1,10,50,100] for grid search.
+- The model seems to be best fit for when hyperparameter C is 50.
+- Accuracy of 51% cannot be considered as good descrimination as the target variable is highly imbalanced.
+- The ROC curve has AUC of 66%.
+#### Decision Tree Model
+- Hyperparameters used for modeling: used max_depth values as [50,80,100] and min_samples_split as [0.001,0.01,0.05]
+- The model seems to be best fit for max_depth of 80 and min_samples_split 0.001
+- The model has accuracy of 60% which is higher than logistic regression model.
+- Even the area under curve is also increased to 68%.
+#### KNeighborsClassifier Model
+- Hyperparameters used for modeling: used n_neighbors values as [1,5,10]
+- The model seems to be best fit for n_neighbors value of 10.
+- The model has accuracy of 58% which is higher than logistic regression model and slightly lower than decision tree model.
+- the area under curve is increased to 64% which is lower than both models.
+
+### Conclusion
+- After analysing models, I think DT model is better than others. We can improve the accuracy by better modelling techniques.
